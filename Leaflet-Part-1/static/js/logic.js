@@ -17,7 +17,10 @@ d3.json(url).then(function(data){
     console.log(data)
 
   function onEachFeature(feature, layer) {
-    layer.bindPopup(`<h3>${feature.properties.place}</h3><hr><p>${new Date(feature.properties.time)}</p>`);
+    layer.bindPopup(`<h3>${feature.properties.place}</h3><hr>
+                    <p>Time: ${new Date(feature.properties.time)}</p>
+                    <p>Magnitude: ${feature.properties.mag}</p>
+                    <p>Depth: ${feature.geometry.coordinates[2]}</p>`);
   }
 
   function circleMarker(feature, latlng){
@@ -62,11 +65,11 @@ d3.json(url).then(function(data){
 
 // Color for depth ranges
 function getColor(depth){
-    return depth >= 90 ? "#033466":
-           depth >= 70 ? "#0E5585" :
-           depth >= 50 ? "#20699C" :
-           depth >= 30 ? "#428BBA" :
-           depth >= 10  ? "#5A9AC6" :
-           "#7AB9DD";
+    return depth >= 90 ? "#00429d":
+           depth >= 70 ? "#4771b2" :
+           depth >= 50 ? "#73a2c6" :
+           depth >= 30 ? "#8abccf" :
+           depth >= 10  ? "#a5d5d8" :
+           "#ffffe0";
 }
 
